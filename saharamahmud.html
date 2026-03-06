@@ -8,9 +8,11 @@
             display:flex;
             justify-content:center;
             align-items:center;
-            hgiteight:100vh;
+            height:100vh;
             background:#f2f2f2;
+            gap:20px;
         }
+
         .calculator{
             background:white;
             padding:20px;
@@ -33,12 +35,30 @@
             font-size:16px;
             cursor:pointer;
         }
+
+        .history{
+            background:white;
+            padding:15px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+            width:180px;
+        }
+
+        .history h3{
+            margin-top:0;
+        }
+
+        #historyList{
+            font-size:14px;
+        }
+
     </style>
 </head>
 
 <body>
 
 <div class="calculator">
+
     <input type="text" id="display" disabled>
 
     <br>
@@ -73,6 +93,12 @@
 
     <button onclick="append('0')" style="width:110px">0</button>
     <button onclick="append('.')">.</button>
+
+</div>
+
+<div class="history">
+    <h3>History</h3>
+    <div id="historyList"></div>
 </div>
 
 <script>
@@ -91,13 +117,26 @@ function deleteLast(){
 }
 
 function calculate(){
+
     let display = document.getElementById("display");
+    let historyList = document.getElementById("historyList");
 
     try{
-        display.value = eval(display.value);
+
+        let expression = display.value;
+        let result = eval(expression);
+
+        display.value = result;
+
+        let item = document.createElement("div");
+        item.textContent = expression + " = " + result;
+
+        historyList.prepend(item);
+
     }catch{
         display.value = "Error";
     }
+
 }
 
 </script>
