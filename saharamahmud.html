@@ -50,6 +50,14 @@
 
         #historyList{
             font-size:14px;
+            min-height:120px;
+        }
+
+        .clear-history{
+            margin-top:10px;
+            width:100%;
+            height:35px;
+            cursor:pointer;
         }
 
     </style>
@@ -99,6 +107,10 @@
 <div class="history">
     <h3>History</h3>
     <div id="historyList"></div>
+
+    <!-- tombol baru -->
+    <button class="clear-history" onclick="clearHistory()">Clear</button>
+
 </div>
 
 <script>
@@ -137,6 +149,11 @@ function calculate(){
         display.value = "Error";
     }
 
+}
+
+/* fungsi baru */
+function clearHistory(){
+    document.getElementById("historyList").innerHTML = "";
 }
 
 </script>
